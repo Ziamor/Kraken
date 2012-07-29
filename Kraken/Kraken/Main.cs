@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Kraken.GameScreens;
+using Kraken.GameScreens.Screens;
 
 namespace Kraken
 {
@@ -18,11 +20,11 @@ namespace Kraken
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        GameScreenManager gsManager;
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            Content.RootDirectory = "Content"; 
         }
 
         /// <summary>
@@ -33,7 +35,12 @@ namespace Kraken
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Services.AddService(typeof(ContentManager), this.Content);
+            Services.AddService(typeof(GraphicsDeviceManager), graphics);
+            gsManager = new GameScreenManager(this);
+
+            MainMenu main = new MainMenu();
+            gsManager.GameScreens.Push(main);
 
             base.Initialize();
         }
@@ -46,8 +53,7 @@ namespace Kraken
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            //Services.AddService(typeof(SpriteBatch), spriteBatch);
         }
 
         /// <summary>
@@ -70,7 +76,7 @@ namespace Kraken
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            gsManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -83,7 +89,9 @@ namespace Kraken
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            gsManager.Draw(gameTime);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
