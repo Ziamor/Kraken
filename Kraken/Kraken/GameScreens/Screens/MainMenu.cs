@@ -8,7 +8,7 @@ using Kraken.GameScreens.Components;
 
 namespace Kraken.GameScreens.Screens
 {
-    public class MainMenu : GameScreen
+    public class MainMenu : MenuScreen
     {
         public MainMenu()
             : base()
