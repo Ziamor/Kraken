@@ -51,6 +51,14 @@ namespace Kraken.GameScreens.Screens.ScreenHelpers
             menuTexts.Add(menuText);
         }
 
+        internal void AddMenuText(string strText,GameScreen linkScreen)
+        {
+            MenuText menuText = new MenuText(Parent, linkScreen);
+            menuText.Text = strText;
+            Parent.components.Add(menuText);
+            menuTexts.Add(menuText);
+        }
+
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             for (int i = 0; i < menuTexts.Count; i++)
@@ -73,7 +81,6 @@ namespace Kraken.GameScreens.Screens.ScreenHelpers
 
         public override void Update(GameTime gameTime)
         {
-            Console.WriteLine(index);
             KeyboardState keyState = Keyboard.GetState();
             if (InputHandler.GetState(Keys.S) == InputState.Pressed || InputHandler.GetState(Keys.Down) == InputState.Pressed)
                 index++;
@@ -83,7 +90,15 @@ namespace Kraken.GameScreens.Screens.ScreenHelpers
                 index = menuTexts.Count - 1;
             else if (index > menuTexts.Count - 1)
                 index = 0;
-
+            if (InputHandler.GetState(Keys.Enter) == InputState.Pressed)
+            {
+                if (index < menuTexts.Count && index >= 0)
+                {
+                    MenuText menuText = menuTexts[index];
+                    if (menuText != null)
+                        menuText.OnClick();
+                }
+            }
             base.Update(gameTime);
         }
     }

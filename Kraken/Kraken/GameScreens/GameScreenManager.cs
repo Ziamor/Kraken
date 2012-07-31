@@ -10,8 +10,8 @@ namespace Kraken.GameScreens
 {
     public class GameScreenManager : DrawableGameComponent
     {
-        private Stack<GameScreen> gameScreens;
-        private SpriteBatch spriteBatch;
+        private static Stack<GameScreen> gameScreens;
+        private static SpriteBatch spriteBatch;
         public static ContentManager contentManager;
         public static GraphicsDevice grahicsDevice;
 
@@ -32,6 +32,11 @@ namespace Kraken.GameScreens
         public SpriteBatch SpriteBatch
         {
             get { return spriteBatch; }
+        }
+
+        public static void AddScreen(GameScreen gameScreen)
+        {
+            gameScreens.Push(gameScreen);
         }
 
         public override void Update(GameTime gameTime)

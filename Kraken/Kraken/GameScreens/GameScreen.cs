@@ -30,13 +30,13 @@ namespace Kraken.GameScreens
 
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             foreach (Component component in components)
                 component.Update(gameTime);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (Component component in components)
                 component.Draw(gameTime, spriteBatch);

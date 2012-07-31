@@ -28,7 +28,9 @@ namespace Kraken
 
         public void Update(GameTime gameTime)
         {
+                //Set the old state using the previous new state
             oldState = newState;
+                //Get the current state
             newState = Keyboard.GetState();
         }
 
@@ -39,7 +41,7 @@ namespace Kraken
                 return InputState.Pressed;
                 //If the user held the key
             else if (newState.IsKeyDown(key) && oldState.IsKeyDown(key))
-                return InputState.Pressed;
+                return InputState.Held;
                 //If the user just let go of the key
             else if (!newState.IsKeyDown(key) && oldState.IsKeyDown(key))
                 return InputState.LetGo;
