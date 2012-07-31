@@ -14,17 +14,11 @@ namespace Kraken.GameScreens
         public Component(GameScreen parent)
         {
             this.parent = parent;
-            LoadContent();
         }
 
         public GameScreen Parent
         {
             get { return parent; }
-        }
-
-        public virtual void LoadContent()
-        {
-
         }
 
         public virtual void Update(GameTime gameTime)

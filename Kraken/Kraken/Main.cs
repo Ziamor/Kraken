@@ -21,10 +21,12 @@ namespace Kraken
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameScreenManager gsManager;
+        InputHandler inputHandler;
+
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content"; 
+            Content.RootDirectory = "Content";
         }
 
         /// <summary>
@@ -36,11 +38,15 @@ namespace Kraken
         protected override void Initialize()
         {
             Services.AddService(typeof(ContentManager), this.Content);
-            Services.AddService(typeof(GraphicsDeviceManager), graphics);
+            Services.AddService(typeof(GraphicsDevice), this.GraphicsDevice);
+
+            inputHandler = new InputHandler();
             gsManager = new GameScreenManager(this);
 
             MainMenu main = new MainMenu();
             gsManager.GameScreens.Push(main);
+
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -75,7 +81,9 @@ namespace Kraken
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+            //Get Input
+            inputHandler.Update(gameTime);
+            //Update gamescreens
             gsManager.Update(gameTime);
 
             base.Update(gameTime);

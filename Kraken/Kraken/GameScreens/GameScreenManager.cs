@@ -13,7 +13,7 @@ namespace Kraken.GameScreens
         private Stack<GameScreen> gameScreens;
         private SpriteBatch spriteBatch;
         public static ContentManager contentManager;
-        public static GraphicsDeviceManager graphics;
+        public static GraphicsDevice grahicsDevice;
 
         public GameScreenManager(Game game)
             : base(game)
@@ -21,7 +21,7 @@ namespace Kraken.GameScreens
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             gameScreens = new Stack<GameScreen>();
             contentManager = (ContentManager)game.Services.GetService(typeof(ContentManager));
-            graphics = (GraphicsDeviceManager)game.Services.GetService(typeof(GraphicsDeviceManager));
+            grahicsDevice = (GraphicsDevice)game.Services.GetService(typeof(GraphicsDevice));
         }
 
         public Stack<GameScreen> GameScreens

@@ -10,17 +10,13 @@ namespace Kraken.GameScreens.Components
     public class BackGround : Component
     {
         Texture2D backgroundImage;
+        string imagePath;
 
-        public BackGround(GameScreen parent)
+        public BackGround(GameScreen parent, string imagePath)
             : base(parent)
         {
-
-        }
-
-        public override void LoadContent()
-        {
-            backgroundImage = GameScreenManager.contentManager.Load<Texture2D>("background-test");
-            base.LoadContent();
+            this.imagePath = imagePath;
+            backgroundImage = GameScreenManager.contentManager.Load<Texture2D>(imagePath);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
