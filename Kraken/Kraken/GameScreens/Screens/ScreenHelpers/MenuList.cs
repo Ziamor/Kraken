@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Kraken.GameScreens.Components;
+using Kraken.Helpers;
 
 namespace Kraken.GameScreens.Screens.ScreenHelpers
 {
@@ -39,7 +39,7 @@ namespace Kraken.GameScreens.Screens.ScreenHelpers
 
         internal void AddMenuText(MenuText menuText)
         {
-            Parent.components.Add(menuText);
+            components.Add(menuText);
             menuTexts.Add(menuText);
         }
 
@@ -47,15 +47,15 @@ namespace Kraken.GameScreens.Screens.ScreenHelpers
         {
             MenuText menuText = new MenuText(Parent);
             menuText.Text = strText;
-            Parent.components.Add(menuText);
+            components.Add(menuText);
             menuTexts.Add(menuText);
         }
 
-        internal void AddMenuText(string strText,GameScreen linkScreen)
+        internal void AddMenuText(string strText,Trigger trigger)
         {
-            MenuText menuText = new MenuText(Parent, linkScreen);
+            MenuText menuText = new MenuText(Parent, trigger);
             menuText.Text = strText;
-            Parent.components.Add(menuText);
+            components.Add(menuText);
             menuTexts.Add(menuText);
         }
 

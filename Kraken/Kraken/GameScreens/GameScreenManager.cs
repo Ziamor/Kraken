@@ -39,6 +39,35 @@ namespace Kraken.GameScreens
             gameScreens.Push(gameScreen);
         }
 
+        public static bool RemoveScreen(GameScreen gameScreen)
+        {
+            Stack<GameScreen> tempGameScreens = new Stack<GameScreen>();
+            bool found = false;
+                //Loop throgh all game screens
+            for (int i = 0; i < gameScreens.Count; i++)
+            {
+                    //Remove the top gamescreen and assign it to a temp value
+                GameScreen screen = gameScreens.Pop();
+                    //If it not the screen we are looking for, push the screen into the temp list
+                if (gameScreen != screen)
+                    tempGameScreens.Push(gameScreen);
+                    //If it is the screen, set found to true and end the loop prematurely
+                else
+                {
+                    found = true;
+                    break;
+                }
+            }
+                //Put all the valid screen back into the gamescreens list
+            for (int i = 0; i < tempGameScreens.Count; i++)
+            {
+                GameScreen screen = tempGameScreens.Pop();
+                gameScreens.Push(gameScreen);
+            }
+            //Return wether we found the screen or not
+            return found;
+        }
+
         public override void Update(GameTime gameTime)
         {
             Stack<GameScreen> screensToUpdate = new Stack<GameScreen>();

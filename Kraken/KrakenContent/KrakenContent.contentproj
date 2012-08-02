@@ -37,7 +37,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TileSheet.png">
+    <Compile Include="Images\TileSheet.png">
       <Name>TileSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

@@ -1,0 +1,12 @@
+﻿Tiles
+	-Each type of tile will have a class
+	-Tile class will have a static tilesheet or the gamescreen manager will havea static tile sheet
+	-tile information such as id and postion will be taken from a txt file
+
+
+
+
+Added
+	-Trigger system
+	-Menu Texts use triggers to navigate pages
+	-Imported old code for tilesets and collisons from a past project 

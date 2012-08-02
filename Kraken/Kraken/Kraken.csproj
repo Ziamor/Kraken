@@ -76,8 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameScreens\Component.cs" />
+    <Compile Include="Helpers\Triggers\LoadPlayScreen.cs" />
     <Compile Include="GameScreens\Components\BackGround.cs" />
-    <Compile Include="GameScreens\Components\MenuText.cs" />
+    <Compile Include="Helpers\Trigger.cs" />
+    <Compile Include="GameScreens\Screens\ScreenHelpers\MenuText.cs" />
     <Compile Include="GameScreens\GameScreen.cs" />
     <Compile Include="GameScreens\GameScreenManager.cs" />
     <Compile Include="GameScreens\Map\MapItem.cs" />
@@ -85,16 +87,22 @@
     <Compile Include="GameScreens\Screens\MainMenu.cs" />
     <Compile Include="GameScreens\Screens\ScreenHelpers\MenuList.cs" />
     <Compile Include="GameScreens\Screens\ScreenHelpers\MenuScreen.cs" />
+    <Compile Include="Helpers\Collision.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="TileSets\CharacterSprite.cs" />
+    <Compile Include="TileSets\Sprite.cs" />
+    <Compile Include="TileSets\Tile.cs" />
+    <Compile Include="TileSets\TileSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="Notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KrakenContent\KrakenContent.contentproj">

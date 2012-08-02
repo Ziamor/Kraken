@@ -8,6 +8,7 @@ using Kraken.GameScreens.Components;
 using Kraken.GameScreens.Map;
 using Kraken.GameScreens.Screens.ScreenHelpers;
 using Kraken.GameScreens.Screens;
+using Kraken.Helpers.Triggers;
 
 namespace Kraken.GameScreens.Screens
 {
@@ -18,13 +19,12 @@ namespace Kraken.GameScreens.Screens
             : base()
         {
             menuList = new MenuList(this, new Vector2(100, 200));
-            menuList.AddMenuText("Play!", new PlayMenu());
+            menuList.AddMenuText("Play!", new LoadPlayScreen());
             menuList.AddMenuText("Options");
             menuList.AddMenuText("Quit");
 
             components.Add(new BackGround(this, "Images//BackGround//background-test"));
             components.Add(menuList);
-            components.Add(new MapItem(this));
         }
 
         public override void Update(GameTime gameTime)

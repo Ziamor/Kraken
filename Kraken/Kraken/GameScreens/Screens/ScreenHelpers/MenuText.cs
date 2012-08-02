@@ -5,26 +5,25 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Kraken.GameScreens.Screens;
+using Kraken.Helpers;
 
-namespace Kraken.GameScreens.Components
+namespace Kraken.GameScreens.Screens.ScreenHelpers
 {
     public class MenuText : Component
     {
         private string text;
         private Vector2 pos;
-
-        private GameScreen linkScreen;
+        private Trigger trigger;
 
         public MenuText(GameScreen parent)
             : base(parent)
         {
-            linkScreen = null;
         }
 
-        public MenuText(GameScreen parent, GameScreen linkScreen)
+        public MenuText(GameScreen parent, Trigger trigger)
             : base(parent)
         {
-            this.linkScreen = linkScreen;
+            this.trigger = trigger;
         }
 
         public Vector2 Position
@@ -46,11 +45,8 @@ namespace Kraken.GameScreens.Components
 
         public bool OnClick()
         {
-            if (linkScreen != null)
-            {
-                GameScreenManager.AddScreen(linkScreen);
-                return true;
-            }
+            if (trigger != null)
+                trigger.Fire();
             return false;
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Kraken.TileSets;
 
 namespace Kraken.GameScreens.Map
 {
@@ -15,10 +16,14 @@ namespace Kraken.GameScreens.Map
                      {1,0,0,1},
                      {1,1,1,1},
                      };
+        private TileSet tileSet;
+        private Texture2D tilesetTexture;
 
         public MapItem(GameScreen parent)
             : base(parent)
         {
+            tilesetTexture = GameScreenManager.contentManager.Load<Texture2D>("Images//TileSheet");
+            tileSet = new TileSet(tilesetTexture);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
@@ -26,13 +31,12 @@ namespace Kraken.GameScreens.Map
             for (int i = 0; i < map.GetLength(0); i++)
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
-                    Color tileColor;
+                    Tile tile;
                     if (map[i, j] == 1)
-                        tileColor = Color.Red;
+                        tile = new Tile(0, new Vector2(i * 32, j * 32));
                     else
-                        tileColor = Color.White;             
-                    Texture2D tile = new Texture2D(GameScreenManager.grahicsDevice,1,1);
-                    spriteBatch.Draw(tile, Vector2.Zero, new Rectangle(0, 0, 32, 32), tileColor);
+                        tile = new Tile(1, new Vector2(i * 32, j * 32));
+                    spriteBatch.Draw(tileSet.TileSetTexture, tile.Position,tileSet.GetTileAt(tile.ID), Color.White);
                 }
             base.Draw(gameTime, spriteBatch);
         }
